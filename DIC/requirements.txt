@@ -1,0 +1,6 @@
+pip install Django==3.2
+pip install mysqlclient
+pip install pymysql
+pip install requests-cache
+python -m pip install requests
+pip install django-crispy-forms

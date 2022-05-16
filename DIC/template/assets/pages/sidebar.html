@@ -1,0 +1,96 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'assets/plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="{% static 'assets/plugins/sweetalert2/sweetalert2.min.css' %}">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="{%static 'assets/plugins/toastr/toastr.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{%static 'assets/dist/css/adminlte.min.css' %}">
+</head>
+<body>
+     <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+
+          <form method="POST" name="filterForm">
+            {% csrf_token %}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <p>Sort Articles: </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <div class="form-check">
+              <input type="radio" value="1" name="sort" onchange="filterForm.submit();">>
+              <label for="latest" class="text-light">latest to oldest</label>
+            </div>
+
+            <div class="form-check">
+              <input type="radio" value="2" name="sort" onchange="filterForm.submit();">
+              <label for="oldest" class="text-light">oldest to latest</label>
+            </div>
+          </li>
+        </form>
+
+        <form method="POST" name="countryForm">
+          {% csrf_token %}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <p>News Country: </p>
+            </a>
+          </li>
+
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <div class="form-check">
+            <input id="checkbox1" type="checkbox" value="US" name="country">
+            <label for="latest" class="text-light">US</label>
+          </div>
+
+          <div class="form-check">
+            <input id="checkbox2" type="checkbox" value="UK" name="country">
+            <label for="oldest" class="text-light">UK</label>
+          </div>
+
+          <div class="form-check">
+            <input id="checkbox3" type="checkbox" value="CA" name="country">
+            <label for="oldest" class="text-light">CA</label>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button type="sbmuit" class="btn btn-light btn-sm mb-4">GO</button>
+          </div>
+        </li>
+      </form>
+        </ul>
+        {% else %}
+        <li class="nav-item">
+          <a href="#" class="nav-link ">
+            <p class="text-sm">you should login first</p>
+          </a>
+        </li>
+        {% endif %}
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+  <script src='{% static "assets/js/script.js" %}'></script>
+</body>
+</html>
